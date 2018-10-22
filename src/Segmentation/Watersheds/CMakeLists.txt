@@ -1,4 +1,12 @@
 
+add_example(SegmentWithWatershedAndDistanceMap)
+compare_to_baseline(EXAMPLE_NAME SegmentWithWatershedAndDistanceMap
+  TEST_NAME SegmentWithWatershedAndDistanceMapTest01BaselineComparison
+  BASELINE_PREFIX SegmentWithWatershedAndDistanceMapTest01Baseline
+  DEPENDS SegmentWithWatershedAndDistanceMapTest01
+  TEST_IMAGE SegmentWithWatershedAndDistanceMapTest01.png
+  )
+
 add_example(SegmentWithWatershedImageFilter)
 compare_to_baseline(EXAMPLE_NAME SegmentWithWatershedImageFilter
   TEST_NAME SegmentWithWatershedImageFilterTest01BaselineComparison
