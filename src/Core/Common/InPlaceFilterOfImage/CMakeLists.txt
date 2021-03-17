@@ -30,7 +30,7 @@ install(TARGETS InPlaceFilterOfImage
   COMPONENT Runtime
   )
 
-install(FILES Code.cxx CMakeLists.txt
+install(FILES Code.cxx CMakeLists.txt Code.py
   DESTINATION share/ITKExamples/Code/Core/Common/InPlaceFilterOfImage/
   COMPONENT Code
   )
@@ -39,3 +39,10 @@ install(FILES Code.cxx CMakeLists.txt
 enable_testing()
 add_test(NAME InPlaceFilterOfImageTest
   COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/InPlaceFilterOfImage Gourds.png)
+
+if(ITK_WRAP_PYTHON)
+  add_test(NAME InPlaceFilterOfImageTestPython
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Code.py
+      Gourds.png
+    )
+endif()
