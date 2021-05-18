@@ -24,3 +24,8 @@ compare_to_baseline(
     BASELINE_PREFIX OutputBaseline4
     DEPENDS GeodesicActiveContourGrayMatterTest
     TEST_IMAGE Output4.png )
+
+add_example(ShrinkWrapLabelImage)
+compare_to_baseline(EXAMPLE_NAME ShrinkWrapLabelImage
+  BASELINE_PREFIX OutputBaseline
+  )
