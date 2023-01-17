@@ -46,22 +46,15 @@ main(int argc, char * argv[])
   using MeshPixelType = double;
   using MeshType = itk::Mesh<MeshPixelType, Dimension>;
 
-  using InputPixelType = unsigned char;
-  using InputImageType = itk::Image<InputPixelType, Dimension>;
+  using PixelType = unsigned char;
+  using ImageType = itk::Image<PixelType, Dimension>;
 
-  const auto input = itk::ReadImage<InputImageType>(inputImageName);
+  const auto input = itk::ReadImage<ImageType>(inputImageName);
 
-  using OutputPixelType = unsigned char;
-  using OutputImageType = itk::Image<OutputPixelType, Dimension>;
-
-  using CastFilterType = itk::CastImageFilter<InputImageType, OutputImageType>;
-  auto cast = CastFilterType::New();
-  cast->SetInput(input);
-
-  using FilterType = itk::TriangleMeshToBinaryImageFilter<MeshType, OutputImageType>;
+  using FilterType = itk::TriangleMeshToBinaryImageFilter<MeshType, ImageType>;
   auto filter = FilterType::New();
-  filter->SetInfoImage(cast->GetOutput());
-  filter->SetInsideValue(itk::NumericTraits<OutputPixelType>::max());
+  filter->SetInfoImage(input);
+  filter->SetInsideValue(itk::NumericTraits<PixelType>::max());
   try
   {
     auto mesh = itk::ReadMesh<MeshType>(inputMeshName);
